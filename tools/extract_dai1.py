@@ -7,6 +7,7 @@ import re
 import sys
 
 YEARS = [
+    ('H30', 'mondai/H30.md', 'answers/H30_official.md', 'official', '平成30年度'),
     ('R1', 'mondai/R1.md', 'answers/R1_official.md', 'official', '令和元年度'),
     ('R3', 'mondai/R3.md', 'answers/R3_official.md', 'official', '令和3年度'),
     ('R4', 'mondai/R4.md', 'answers/R4_official.md', 'official', '令和4年度'),
