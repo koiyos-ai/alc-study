@@ -39,6 +39,7 @@
 | ファイル | 内容 |
 |---|---|
 | `study/R4_shuzeiho_study.docx` | R4 の問題と公式解答例・学習ポイント（全問） |
+| `study/shuzeiho_dai1.docx` | R4〜R7 の大問1（種類・品目の判定、20問）を年度別に整理した問題集。判定の基準まとめ付き |
 | `study/shuzeiho_ronjutsu.docx` | R4〜R7 の論述問題（第二問〜第四問、12問）をテーマ別に整理した問題集 |
 
 ### ツール（`tools/`）
@@ -49,3 +50,7 @@
 | `tools/build_ronjutsu.js` | `study/shuzeiho_ronjutsu.docx` を生成するスクリプト |
 
 実行例：`node tools/build_ronjutsu.js study/shuzeiho_ronjutsu.docx`（npm の `docx` パッケージが必要）
+| `tools/extract_dai1.py` | `mondai/`・`answers/` から大問1を取り出して JSON にするスクリプト |
+| `tools/build_dai1.js` | 上記 JSON から `study/shuzeiho_dai1.docx` を生成するスクリプト |
+
+大問1の資料の作り直し：`python3 tools/extract_dai1.py dai1.json && node tools/build_dai1.js dai1.json study/shuzeiho_dai1.docx`
