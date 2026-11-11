@@ -39,7 +39,7 @@
 | ファイル | 内容 |
 |---|---|
 | `study/R4_shuzeiho_study.docx` | R4 の問題と公式解答例・学習ポイント（全問） |
-| `study/shuzeiho_dai1.docx` | R4〜R7 の大問1（種類・品目の判定、20問）を年度別に整理した問題集。判定の基準まとめ付き |
+| `study/shuzeiho_dai1.docx` | R4〜R7 の大問1（種類・品目の判定、20問）を答えの品目別に整理した問題集。判定の基準まとめ付き |
 | `study/shuzeiho_ronjutsu.docx` | R4〜R7 の論述問題（第二問〜第四問、12問）をテーマ別に整理した問題集 |
 
 ### ツール（`tools/`）
