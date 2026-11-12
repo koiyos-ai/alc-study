@@ -74,9 +74,32 @@ const inline = s => {
   return runs;
 };
 let firstH1 = true;
+// 表は1行ずつ「カード」にする（1列目を見出し、他の列は「見出し：値」）。<br> は改行
+const cells = l => l.replace(/^\|/, '').replace(/\|$/, '').split('|').map(c => c.trim());
+let tblHead = null;
 for (const raw of lines) {
   const line = raw.replace(/\s+$/, '');
+  if (line.startsWith('|')) {
+    const c = cells(line);
+    if (c.every(x => /^:?-+:?$/.test(x))) continue;
+    if (!tblHead) { tblHead = c; continue; }
+    const paras = [];
+    if (c[0]) paras.push(p(inline(c[0]).map(r => r), { after: 40 }));
+    c.slice(1).forEach((v, k) => {
+      if (!v) return;
+      const parts = v.split(/<br\s*\/?>/);
+      const hd = tblHead[k + 1] || '';
+      const last = k === c.length - 2;
+      if (parts.length === 1 && last) paras.push(p([t(hd ? hd + '：' : '', { bold: true }), t(v.replace(/\*\*/g, ''), { bold: true, color: C.accent })], { after: 20 }));
+      else { if (hd) paras.push(p([t(hd, { bold: true })], { after: 20 })); parts.forEach(x => paras.push(p(inline(x), { after: 20 }))); }
+    });
+    if (!c[0] && paras.length) paras.unshift(p([t('合計', { bold: true })], { after: 20 }));
+    add(box(null, C.card, paras, true), gap());
+    continue;
+  }
+  tblHead = null;
   if (!line) continue;
+  if (line.startsWith('>')) { const x = line.replace(/^>\s?/, ''); if (x) add(box(null, C.pt, [p(inline(x), { after: 0 })], true), gap()); continue; }
   if (line === '---') { add(brk()); continue; }
   let m;
   if ((m = line.match(/^# (.+)/))) {
